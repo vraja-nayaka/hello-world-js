@@ -1,0 +1,20 @@
+.clickable {
+  border-radius: 8px;
+  margin-right: 8px;
+  border: 0px solid transparent;
+  padding: 2px 8px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f1f1f1;
+  color: blue;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  min-width: 27px;
+}
+.clickable:hover {
+  border-color: #646cff;
+}
+.clickable:focus,
+.clickable:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

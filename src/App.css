@@ -1,0 +1,13 @@
+#root {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+#appConfetti {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
