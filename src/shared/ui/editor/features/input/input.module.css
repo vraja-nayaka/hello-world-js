@@ -1,0 +1,39 @@
+.container {
+    position: relative;
+}
+
+.input,
+.button {
+    border-radius: 8px;
+    margin-right: 8px;
+    border: 1px solid transparent;
+    padding: 2px 8px;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    transition: all 0.25s;
+    min-width: 27px;
+    color: blue;
+    font-size: 15px;
+}
+.button {
+    padding: 1px 0;
+    outline: 4px auto -webkit-focus-ring-color;
+}
+.input:hover {
+    border-color: #646cff;
+}
+.button:hover {
+    border-color: #646cff;
+    background-color: antiquewhite;
+}
+.input:focus,
+.input:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+.button {
+    position: absolute;
+    right: 0;
+}

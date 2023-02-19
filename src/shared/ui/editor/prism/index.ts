@@ -2,7 +2,7 @@ import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-jsx";
 import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-tsx";
-import Prism, { Grammar, GrammarValue } from "prismjs";
+import Prism from "prismjs";
 import { Editor, Element, Node, NodeEntry, Range } from "slate";
 import { CodeBlockElement } from "../custom-types";
 import { mergeMaps, normalizeTokens } from "./utils";
@@ -12,14 +12,7 @@ import "./codeLinesPlugin";
 import { useMemo } from "react";
 import { useSlate } from "slate-react";
 import { CodeBlockType } from "../consts";
-
-const withButtonToken = (grammar: Grammar) => {
-  (grammar as Record<string, GrammarValue>).customButton = {
-    pattern: /§§.+§§/,
-    greedy: true,
-  };
-  return grammar;
-};
+import { withFeatures } from "../features/withFeatures";
 
 const getChildNodeToDecorations = ([
   block,
@@ -29,10 +22,7 @@ const getChildNodeToDecorations = ([
 
   const text = block.children.map((line) => Node.string(line)).join("\n");
   const language = block.language;
-  const tokens = Prism.tokenize(
-    text,
-    withButtonToken(Prism.languages[language])
-  );
+  const tokens = Prism.tokenize(text, withFeatures(Prism.languages[language]));
   const normalizedTokens = normalizeTokens(tokens); // make tokens flat and grouped by line
   const blockChildren = block.children as Element[];
 

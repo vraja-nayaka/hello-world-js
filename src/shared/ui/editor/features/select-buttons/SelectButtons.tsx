@@ -4,6 +4,7 @@ import { ReactEditor, RenderLeafProps, useSlateStatic } from "slate-react";
 
 import { pushConfetti } from "../../../confetti/Confetti";
 import { CustomText } from "../../custom-types";
+import { getElementCenter } from "../utils";
 import { correctSymbol, splitSymbol } from "./helpers";
 import style from "./select-buttons.module.css";
 
@@ -25,8 +26,8 @@ export const SelectButton = (props: RenderLeafProps) => {
   const customButtonTitles = clickableTextWithoutCorrectSign.split(splitSymbol);
 
   const { text, ...rest } = leaf;
-  // @ts-ignore
-  const onClick = (event: any) => {
+
+  const onClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
     const selectedText = event.currentTarget.innerText;
     const interactiveText = text;
     const range = ReactEditor.findEventRange(editor, event);
@@ -35,10 +36,7 @@ export const SelectButton = (props: RenderLeafProps) => {
     const startOffset = allStringText.indexOf(interactiveText);
     const endOffset = startOffset + interactiveText.length;
 
-    const origin = {
-      x: event.clientX / window.innerWidth,
-      y: event.clientY / window.innerHeight,
-    };
+    const origin = getElementCenter(event.currentTarget);
 
     if (selectedText === correctAnswer) {
       const anchor = { path: range.anchor.path, offset: startOffset };
