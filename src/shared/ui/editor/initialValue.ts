@@ -1,18 +1,21 @@
-import { Element } from "slate";
-import { CodeBlockType, CodeLineType, ParagraphType } from "./consts";
+import { Element } from 'slate';
+import { CodeBlockType, CodeLineType, ParagraphType } from './consts';
 
 const toChildren = (content: string) => [{ text: content }];
 
 const toCodeLines = (content: string): Element[] =>
-  content
-    .split("\n")
-    .map((line) => ({ type: CodeLineType, children: toChildren(line) }));
+    content.split('\n').map((line) => ({ type: CodeLineType, children: toChildren(line) }));
+
+const getJsxCodeBlock = (codeString: string) => {
+    return {
+        type: CodeBlockType,
+        language: 'jsx',
+        children: toCodeLines(codeString),
+    };
+};
 
 export const initialValue1: Element[] = [
-  {
-    type: CodeBlockType,
-    language: "jsx",
-    children: toCodeLines(`// Привет! Этим цветом отмечены комментарии к коду
+    getJsxCodeBlock(`// Привет! Этим цветом отмечены комментарии к коду
 // Они начинаются с двух слешей (//)
 
 // СТРОКИ (string)
@@ -28,9 +31,8 @@ export const initialValue1: Element[] = [
 
 Мы хотим получить строку // -> 'Сочное🍎'
 // Нажми на правильный ответ 
-'Сочное' + §§'⚽️'±§'🍎'±'🕸'§§ // -> 'Сочное🍎'
-
-
+'Сочное' + §§'⚽️'±§'🍎'±'🕸'§§ // -> 'Сочное🍎'`),
+    getJsxCodeBlock(`
 // Продолжай выбирать правильный ответ
 "Привет " + §§"медвед"±"пока"±§"сложение"§§; // -> "Привет сложение"
 
@@ -38,7 +40,8 @@ export const initialValue1: Element[] = [
 // ЧИСЛА (number)
 // Также мы можем использовать математику.
 1 + 2; // -> §§§3±4±5§§ 
-
+`),
+    getJsxCodeBlock(`
 // number пишется без кавычек!
 // Выбери число
 §§"text"±'14'±"number"±§25±"33"§§
@@ -51,9 +54,8 @@ export const initialValue1: Element[] = [
 100 - §§35±75±§85§§; // -> 15
 
 6 * §§10±§60±81§§; // -> 360
-
-Эти строки будут плавно появляться по мере продвижения*
-
+`),
+    getJsxCodeBlock(`
 // Не переживай математики дальше не будет так много
 
 // Как ты заметил числа и строки можно также отличить по цвету:
@@ -61,7 +63,8 @@ export const initialValue1: Element[] = [
 
 // Итак последний экзамен по математике:
 11 + §§"99"±14±§"0"§§; // -> 110
-
+`),
+    getJsxCodeBlock(`
 // На удивление нужен именно "0"!
 // Это потому, что если JS видит строку, то будет склеивать, а не складывать
 То есть 11 + "99" // -> "1199"
@@ -69,39 +72,14 @@ export const initialValue1: Element[] = [
 Вот такая математика 😁
 
 // Если интересно, то двигаемся дальше!
-
 `),
-  },
-
-  // // Выбери своего персонажа
-  // §§🧒±👦±🧑±👩§§
-
-  // Выведи имя своего персонажа
-  // const name = (тут будет ввод с галочкой)
-
-  // const App = () => {
-  //   const [editor] = useState(() => withReact(createEditor()))
-
-  //   return (
-  //     <Slate editor={editor} value={initialValue}>
-  //       <Editable />
-  //     </Slate>
-  //   )
-  // }`),
-  //   },
-  // {
-  //   type: ParagraphType,
-  //   children: toChildren(
-  //     "If you are using TypeScript, you will also need to extend the Editor with ReactEditor and add annotations as per the documentation on TypeScript. The example below also includes the custom types required for the rest of this example."
-  //   ),
-  // },
 ];
 
 export const initialValue2: Element[] = [
-  {
-    type: CodeBlockType,
-    language: "jsx",
-    children: toCodeLines(`
+    {
+        type: CodeBlockType,
+        language: 'jsx',
+        children: toCodeLines(`
 'Теперь разберем массивы (array):'
 // Массив - это упорядоченная коллекция
 [] // это пустой массив
@@ -127,5 +105,5 @@ export const initialValue2: Element[] = [
 + что-то еще
 
 `),
-  },
+    },
 ];

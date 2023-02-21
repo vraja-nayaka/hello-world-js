@@ -1,6 +1,7 @@
 import clsx from 'clsx';
 import { Editor, NodeEntry, Transforms } from 'slate';
 import { ReactEditor, RenderLeafProps, useSlateStatic } from 'slate-react';
+import { currentCodeBlockApi } from '../../../../lib/store';
 
 import { pushConfetti } from '../../../confetti/Confetti';
 import { CustomText } from '../../custom-types';
@@ -53,6 +54,8 @@ export const Input = (props: RenderLeafProps) => {
             Transforms.insertText(editor, selectedText, { at: anchor });
 
             pushConfetti({ origin, type: 'success' });
+            window.scrollTo({ top: window.scrollY + 100, behavior: 'smooth' });
+            currentCodeBlockApi.next();
         } else {
             pushConfetti({ origin, type: 'fail' });
             input.focus();
