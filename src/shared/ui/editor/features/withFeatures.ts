@@ -3,6 +3,7 @@ import { Grammar, GrammarValue } from "prismjs";
 const features = [
   { name: "customButton", pattern: /§§.+§§/ },
   { name: "customInput", pattern: /§_.+§_/ },
+  { name: "sequence", pattern: /§>.+§>/ },
   { name: "comment", pattern: /\/\/[^§\n]*|\/\*[\s\S>]*?(?:\*\/|$)/ },
 ];
 

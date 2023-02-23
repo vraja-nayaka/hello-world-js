@@ -1,6 +1,7 @@
 import { RenderLeafProps } from "slate-react";
 import { Input, isInput } from "./features/input";
 import { isSelectButton, SelectButton } from "./features/select-buttons";
+import { isSequence, Sequence } from "./features/sequence";
 
 export const renderLeaf = (props: RenderLeafProps) => {
   const { attributes, children, leaf } = props;
@@ -11,6 +12,11 @@ export const renderLeaf = (props: RenderLeafProps) => {
 
   if (isInput(props)) {
     return <Input {...props} />;
+  }
+
+  if (isSequence(props)) {
+    console.log('sequen')
+    return <Sequence {...props} />;
   }
 
   const { text, ...rest } = leaf;

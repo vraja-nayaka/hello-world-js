@@ -1,0 +1,124 @@
+.toolbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background-color: darkgray;
+    min-height: 80px;
+    animation: animateToolbar 0.5s ease forwards;
+}
+
+.toolbarHidden {
+    animation: animateHideToolbar 0.3s ease backwards;
+    translate: 0 200px;
+}
+
+.toolbarNone {
+    opacity: 0;
+}
+
+.toolbarHidden .submit {
+    opacity: 20%;
+}
+
+.toolbarContainer {
+    max-width: 680px;
+    padding: 16px 16px 0;
+    margin: auto;
+}
+
+.submitContainer {
+    display: flex;
+    justify-content: end;
+}
+
+.submit {
+    margin-bottom: 12px;
+}
+
+.selectable {
+    border-radius: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    /* border: 0px solid transparent; */
+    padding: 2px 8px 4px;
+    font-weight: 500;
+    font-family: monospace;
+    background-color: #f1f1f1;
+    color: blue;
+    cursor: pointer;
+    transition: all 0.25s;
+    min-width: 27px;
+}
+.selectable:hover {
+    border-color: #646cff;
+    background-color: #9cfabd;
+}
+.selectable:focus,
+.selectable:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+.deletable {
+    border-radius: 8px;
+    margin: 4px;
+    border: 0px solid transparent;
+    padding: 2px 8px 4px;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #f1f1f1;
+    color: blue;
+    cursor: pointer;
+    transition: all 0.25s;
+    min-width: 27px;
+}
+.deletable:hover {
+    border-color: #646cff;
+    background-color: #ce807f;
+}
+.deletable:focus,
+.deletable:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+.focusable {
+    min-height: 32px;
+    border-radius: 8px;
+    margin-right: 8px;
+    border: 1px solid transparent;
+    padding: 2px 8px;
+    background-color: #000;
+    color: blue;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    min-width: 300px;
+}
+.focusable:hover {
+    border-color: #646cff;
+}
+.focused {
+    border-color: #646cff;
+}
+.focusable:focus,
+.focusable:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+@keyframes animateToolbar {
+    0% {
+        opacity: 0;
+        translate: 0 200px;
+    }
+    100% {
+        opacity: 100%;
+        translate: 0 0;
+    }
+}
+
+@keyframes animateHideToolbar {
+    0% {
+        translate: 0 0;
+    }
+    100% {
+        translate: 0 200px;
+    }
+}

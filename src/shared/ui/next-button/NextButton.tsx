@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react';
-import { $currentLesson, currentLessonApi } from '../../lib/store';
+import { $currentLesson, currentCodeBlockApi, currentLessonApi } from '../../lib/store';
 import { pushConfetti } from '../confetti/Confetti';
 
 export const NextButton = () => {
@@ -7,7 +7,7 @@ export const NextButton = () => {
 
     return (
         <>
-            Спасибо за урок, теперь можем двигаться дальше
+            <div>Спасибо за урок, теперь можем перейти к следующему уроку</div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <button
                     onClick={() => {
@@ -17,6 +17,7 @@ export const NextButton = () => {
                             origin: { y: 1 },
                         });
                         window.scrollTo({ top: 0, behavior: 'smooth' });
+                        currentCodeBlockApi.reset();
                         setTimeout(() => currentLessonApi.next(), 300);
                     }}
                 >
