@@ -36,4 +36,5 @@
 .button {
     position: absolute;
     right: 0;
+    line-height: 20px;
 }
