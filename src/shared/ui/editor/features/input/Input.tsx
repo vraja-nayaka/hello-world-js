@@ -16,7 +16,7 @@ export const Input = (props: RenderLeafProps) => {
     const correctAnswerEnd = foundEnd === -1 ? undefined : foundEnd;
     const correctAnswer = clickableText.slice(correctAnswerStart, correctAnswerEnd);
 
-    const width = 10 * correctAnswer.length + 27;
+    const width = 10 * correctAnswer.length + 35;
 
     const { text, ...rest } = leaf;
 

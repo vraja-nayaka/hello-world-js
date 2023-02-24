@@ -15,10 +15,6 @@ const getJsxCodeBlock = (codeString: string) => {
 };
 
 export const initialValue1: Element[] = [
-    getJsxCodeBlock(`
-    // А здесь умножение и нужно вписать ответ:
-    2 * 3; // -> §_6§_
-    `),
     getJsxCodeBlock(`// Привет! Этим цветом отмечены комментарии к коду
 // Если строка начинается с двух слешей - это комментарий
 
