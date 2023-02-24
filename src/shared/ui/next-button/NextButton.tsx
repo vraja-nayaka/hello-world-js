@@ -18,7 +18,7 @@ export const NextButton = () => {
                         });
                         window.scrollTo({ top: 0, behavior: 'smooth' });
                         currentCodeBlockApi.reset();
-                        setTimeout(() => currentLessonApi.next(), 300);
+                        setTimeout(() => currentLessonApi.reset(), 300);
                     }}
                 >
                     {currentLesson === 1 ? 'Дальше пока ничего нет' : 'Поехали!'}

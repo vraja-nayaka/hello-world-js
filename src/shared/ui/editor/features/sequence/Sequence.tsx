@@ -61,10 +61,13 @@ export const Sequence = (props: RenderLeafProps) => {
         <div
             ref={ref}
             {...attributes}
+            role='button'
+            tabIndex={0}
             className={clsx(style.focusable, {
                 [style.focused]: sequenceToolbarWords.length,
             })}
             onClick={onFocus}
+            onKeyUp={onFocus}
         >
             {sequenceSelectedWords.map((selectedWord, index) => {
                 return (

@@ -1,0 +1,11 @@
+.wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 34px;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 2px 2px 2px #000;
+    width: 100vw;
+    user-select: none;
+}
