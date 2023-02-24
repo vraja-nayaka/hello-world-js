@@ -1,9 +1,7 @@
 import clsx from 'clsx';
 import { useStore } from 'effector-react';
 import { useEffect, useState } from 'react';
-import { currentCodeBlockApi } from '../../../../lib/store';
-import { pushConfetti } from '../../../confetti/Confetti';
-import { getElementCenter } from '../utils';
+import { useAnswer } from '../utils';
 import { answerJoinSymbol, toolbarId } from './helpers';
 import {
     sequenceSelectedWordsApi,
@@ -22,22 +20,19 @@ export const SequenceToolbar = () => {
     const sequenceSelectedWords = useStore($sequenceSelectedWords);
     const sequenceOnSuccessHandler = useStore($sequenceOnSuccessHandler);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [onCorrect, onWrong] = useAnswer();
 
     const onCheck: React.MouseEventHandler<HTMLButtonElement> = (event) => {
         const answer = sequenceSelectedWords.join(answerJoinSymbol);
         const isCorrect = sequenceCorrectAnswers.includes(answer);
 
-        const origin = getElementCenter(event.currentTarget);
         if (isCorrect) {
-
-            pushConfetti({ origin, type: 'success' });
-            currentCodeBlockApi.next();
             sequenceOnSuccessHandler();
             sequenceOnSuccessHandlerApi.remove();
-            window.scrollTo({ top: window.scrollY + 100, behavior: 'smooth' });
             sequenceToolbarWordsApi.hide();
+            onCorrect(event.currentTarget);
         } else {
-            pushConfetti({ origin, type: 'fail' });
+            onWrong(event.currentTarget);
         }
     };
 

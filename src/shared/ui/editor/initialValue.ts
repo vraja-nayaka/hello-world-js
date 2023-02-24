@@ -15,6 +15,11 @@ const getJsxCodeBlock = (codeString: string) => {
 };
 
 export const initialValue1: Element[] = [
+    getJsxCodeBlock(`
+    // А теперь составим выражение полностью
+    // (кликни в пустое поле и выбирай последовательно блоки)
+    §>"Строка "±+±"777"±// ->±"Строка 777"§>
+    `),
     getJsxCodeBlock(`// Привет! Этим цветом отмечены комментарии к коду
 // Если строка начинается с двух слешей - это комментарий
 
@@ -75,6 +80,11 @@ export const initialValue1: Element[] = [
 "Привет " + §§"медвед"±"пока"±§"сложение"§§; // -> "Привет сложение"
 `),
     getJsxCodeBlock(`
+// А теперь составим выражение полностью
+// (кликни в пустое поле и выбирай последовательно блоки)
+§>"Строка "±+±"777"±// ->±"Строка 777"§>
+`),
+    getJsxCodeBlock(`
 // Давай повторим числа (number), они пишутся без кавычек!
 // Выбери число
 §§"text"±'14'±"number"±§25±"33"§§
@@ -102,10 +112,6 @@ export const initialValue1: Element[] = [
 
 export const initialValue2: Element[] = [
     getJsxCodeBlock(`
-    // объяви пустой массив
-    §>const±emptyArray±=±[]±§{±§}±delete§>`
-    ),
-    getJsxCodeBlock(`
 'Теперь разберем массивы (array):'
 // Массив - это упорядоченная коллекция
 [] // это пустой массив
@@ -130,4 +136,7 @@ export const initialValue2: Element[] = [
 
 + что-то еще
 `),
+    getJsxCodeBlock(`
+// объяви пустой массив
+§>const±emptyArray±=±[]±§{±§}±delete§>`),
 ];

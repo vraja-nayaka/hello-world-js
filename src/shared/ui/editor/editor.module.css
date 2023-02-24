@@ -1,3 +1,7 @@
+.editorWrapper {
+  padding: 0 0 70vh;
+}
+
 .codeBlock {
   font-family: monospace;
   font-size: 16px;

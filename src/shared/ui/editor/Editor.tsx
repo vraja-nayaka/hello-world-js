@@ -14,6 +14,8 @@ import { useStore } from 'effector-react';
 import { $currentCodeBlock } from '../../lib/store';
 import { NextButton } from '../next-button/NextButton';
 
+import style from './editor.module.css';
+
 // its just for init
 Prism;
 
@@ -39,7 +41,7 @@ export const CodeHighlighting = ({ initialValue }: Props) => {
     }, [currentCodeBlock]);
 
     return (
-        <>
+        <div className={style.editorWrapper}>
             <Slate editor={editor} value={[value]}>
                 <SetNodeToDecorations />
                 <Editable
@@ -53,6 +55,6 @@ export const CodeHighlighting = ({ initialValue }: Props) => {
                 <style>{prismThemeCss}</style>
             </Slate>
             {isShowNextButton && <NextButton />}
-        </>
+        </div>
     );
 };

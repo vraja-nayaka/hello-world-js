@@ -1,11 +1,10 @@
 import clsx from 'clsx';
 import { useStore } from 'effector-react';
 import { useRef } from 'react';
-import { Editor, NodeEntry, Transforms } from 'slate';
 import { ReactEditor, RenderLeafProps, useSlateStatic } from 'slate-react';
 import { useOnClickOutside } from '../../../../lib/hooks/useOutsideClick';
 
-import { CustomText } from '../../custom-types';
+import { replaceFeatureToText, shuffle } from '../utils';
 import { answerJoinSymbol, splitSymbol, toolbarId, wrongSymbol } from './helpers';
 import {
     $sequenceSelectedWords,
@@ -27,7 +26,9 @@ export const Sequence = (props: RenderLeafProps) => {
     const editor = useSlateStatic();
 
     const clickableText: string = children.props.leaf.text.slice(2, -2);
-    const variants = clickableText.split(splitSymbol).map((value) => value.replace(wrongSymbol, ''));
+    const variants = clickableText
+        .split(splitSymbol)
+        .map((value) => value.replace(wrongSymbol, ''));
 
     const ref = useRef(null);
 
@@ -44,20 +45,13 @@ export const Sequence = (props: RenderLeafProps) => {
             .trim();
 
         const onSuccess = () => {
-            const interactiveText = text;
             const path = [...ReactEditor.findPath(editor, children.props.parent), 0];
-            const node = Editor.node(editor, path) as NodeEntry<CustomText>;
-            const allStringText = node[0].text;
-            const startOffset = allStringText.indexOf(interactiveText);
-            const endOffset = startOffset + interactiveText.length;
-            const anchor = { path, offset: startOffset };
-            const focus = { path, offset: endOffset };
-            Transforms.delete(editor, { at: { anchor, focus } });
-            Transforms.insertText(editor, correctAnswer, { at: anchor });
+            replaceFeatureToText(editor, path, text, correctAnswer);
         };
-
         sequenceOnSuccessHandlerApi.set(onSuccess);
-        sequenceToolbarWordsApi.show(variants);
+        if (!sequenceToolbarWords.length) {
+            sequenceToolbarWordsApi.show(shuffle(variants));
+        }
         sequenceCorrectAnswersApi.set([correctAnswer]);
     };
 

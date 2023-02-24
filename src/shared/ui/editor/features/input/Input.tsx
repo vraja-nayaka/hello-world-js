@@ -1,11 +1,6 @@
 import clsx from 'clsx';
-import { Editor, NodeEntry, Transforms } from 'slate';
 import { ReactEditor, RenderLeafProps, useSlateStatic } from 'slate-react';
-import { currentCodeBlockApi } from '../../../../lib/store';
-
-import { pushConfetti } from '../../../confetti/Confetti';
-import { CustomText } from '../../custom-types';
-import { getElementCenter } from '../utils';
+import { replaceFeatureToText, useAnswer } from '../utils';
 import { correctSymbol, splitSymbol } from './helpers';
 import style from './input.module.css';
 
@@ -13,6 +8,7 @@ import style from './input.module.css';
 export const Input = (props: RenderLeafProps) => {
     const { attributes, children, leaf } = props;
     const editor = useSlateStatic();
+    const [onCorrect, onWrong] = useAnswer();
 
     const clickableText: string = children.props.leaf.text.slice(2, -2);
     const correctAnswerStart = clickableText.indexOf(correctSymbol) + 1;
@@ -37,27 +33,13 @@ export const Input = (props: RenderLeafProps) => {
 
     const onSubmit = (input: HTMLInputElement) => {
         const selectedText = input.value;
-
-        const interactiveText = text;
         const path = [...ReactEditor.findPath(editor, children.props.parent), 0];
-        const node = Editor.node(editor, path) as NodeEntry<CustomText>;
-        const allStringText = node[0].text;
-        const startOffset = allStringText.indexOf(interactiveText);
-        const endOffset = startOffset + interactiveText.length;
-
-        const origin = getElementCenter(input);
 
         if (selectedText === correctAnswer) {
-            const anchor = { path, offset: startOffset };
-            const focus = { path, offset: endOffset };
-            Transforms.delete(editor, { at: { anchor, focus } });
-            Transforms.insertText(editor, selectedText, { at: anchor });
-
-            pushConfetti({ origin, type: 'success' });
-            window.scrollTo({ top: window.scrollY + 100, behavior: 'smooth' });
-            currentCodeBlockApi.next();
+            replaceFeatureToText(editor, path, text, selectedText);
+            onCorrect(input);
         } else {
-            pushConfetti({ origin, type: 'fail' });
+            onWrong(input);
             input.focus();
         }
     };
