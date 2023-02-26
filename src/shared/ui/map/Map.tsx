@@ -8,6 +8,7 @@ import style from './map.module.css';
 const marks = [
     { x: 60, y: 75, lessonId: 0 },
     { x: 52, y: 74, lessonId: 1 },
+    { x: 51, y: 69, lessonId: 2 },
 ];
 type Sizes = {
     x: number;

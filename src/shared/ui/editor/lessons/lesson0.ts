@@ -1,6 +1,3 @@
-import { Element } from 'slate';
-import { getJsxCodeBlock } from './utils';
-
 export const lesson0: string[] = [
     `// Привет! Этим цветом отмечены комментарии к коду
 // Если строка начинается с двух слешей - это комментарий
