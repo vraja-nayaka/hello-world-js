@@ -22,15 +22,12 @@ export const Map = () => {
         image.current?.addEventListener('load', () => {
             if (image.current) {
                 setSizes({ x: image.current.width, y: image.current.height });
+                (image.current?.parentNode as HTMLDivElement).scrollTo({
+                    behavior: 'auto',
+                    left: (((image.current?.width || 0) - 400) * marks[0].x) / 100,
+                });
                 setTimeout(() => {
-                    (image.current?.parentNode as HTMLDivElement).scrollTo({
-                        behavior: 'auto',
-                        left: (((image.current?.width || 0) - 400) * marks[0].x) / 100,
-                    });
-                    console.log('🚀 ~ image.current?.width:', image.current?.width);
-                    setTimeout(() => {
-                        window.scrollTo({ behavior: 'auto', top: image.current?.height });
-                    }, 100);
+                    window.scrollTo({ behavior: 'auto', top: image.current?.height });
                 }, 100);
             }
         });

@@ -31,6 +31,7 @@ export const SequenceToolbar = () => {
             sequenceOnSuccessHandlerApi.remove();
             sequenceToolbarWordsApi.hide();
             onCorrect(event.currentTarget);
+            sequenceSelectedWordsApi.clear();
         } else {
             onWrong(event.currentTarget);
         }

@@ -6,7 +6,6 @@ import { $currentLesson } from './shared/lib/store';
 
 function App() {
     const currentLesson = useStore($currentLesson);
-    console.log('🚀 ~ currentLesson:', currentLesson);
 
     return (
         <>

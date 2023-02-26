@@ -8,6 +8,7 @@ export const sequenceSelectedWordsApi = createApi($sequenceSelectedWords, {
         newState.splice(index, 1);
         return newState;
     },
+    clear: () => [],
 });
 
 export const $sequenceToolbarWords = createStore<string[]>([]);
