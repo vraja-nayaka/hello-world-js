@@ -15,16 +15,18 @@ import { $currentCodeBlock } from '../../lib/store';
 import { NextButton } from '../next-button/NextButton';
 
 import style from './editor.module.css';
+import { getJsxCodeBlock } from './lessons/utils';
 
 // its just for init
 Prism;
 
 type Props = {
-    initialValue: Element[];
+    lesson: string[];
 };
 
-export const CodeHighlighting = ({ initialValue }: Props) => {
+export const CodeHighlighting = ({ lesson }: Props) => {
     const [editor] = useState(() => withHistory(withReact(createEditor())));
+    const initialValue = lesson.map((value) => getJsxCodeBlock(value));
 
     const decorate = useDecorate(editor);
     const onKeyDown = useOnKeydown(editor);

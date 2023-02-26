@@ -10,8 +10,8 @@ export const PracticePage = () => {
 
     return (
         <>
-            {currentLesson === 0 && <CodeHighlighting initialValue={lesson0} />}
-            {currentLesson === 1 && <CodeHighlighting initialValue={lesson1} />}
+            {currentLesson === 0 && <CodeHighlighting lesson={lesson0} />}
+            {currentLesson === 1 && <CodeHighlighting lesson={lesson1} />}
             <SequenceToolbar />
         </>
     );

@@ -1,8 +1,5 @@
-import { Element } from 'slate';
-import { getJsxCodeBlock } from './utils';
-
-export const lesson1: Element[] = [
-    getJsxCodeBlock(`
+export const lesson1: string[] = [
+    `
 'Теперь разберем массивы (array):'
 // Массив - это упорядоченная коллекция
 [] // это пустой массив
@@ -26,8 +23,8 @@ export const lesson1: Element[] = [
 §§[""]±§[]±[0]±null§§;
 
 + что-то еще
-`),
-    getJsxCodeBlock(`
+`,
+    `
 // объяви пустой массив
-§>const±emptyArray±=±[]±§{±§}±delete§>`),
+§>const±emptyArray±=±[]±§{±§}±delete§>`,
 ];
