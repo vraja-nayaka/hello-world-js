@@ -75,9 +75,9 @@ export const Sequence = (props: RenderLeafProps) => {
                         {...attributes}
                         className={clsx(Object.keys(rest), style.deletable)}
                         onClick={() => sequenceSelectedWordsApi.remove(index)}
-                        key={selectedWord}
+                        key={selectedWord.index}
                     >
-                        {selectedWord}
+                        {selectedWord.value}
                     </button>
                 );
             })}

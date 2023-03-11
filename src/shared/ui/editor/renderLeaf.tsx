@@ -15,7 +15,6 @@ export const renderLeaf = (props: RenderLeafProps) => {
   }
 
   if (isSequence(props)) {
-    console.log('sequen')
     return <Sequence {...props} />;
   }
 

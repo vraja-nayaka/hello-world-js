@@ -58,6 +58,14 @@
 .selectable:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
+.selectable:disabled {
+    pointer-events: none;
+    outline: none;
+    background-color: darkgray;
+    color: gray;
+    border-color: gray;
+}
+
 .deletable {
     border-radius: 8px;
     margin: 4px;

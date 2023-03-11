@@ -18,12 +18,14 @@ export const SequenceToolbar = () => {
     const sequenceToolbarWords = useStore($sequenceToolbarWords);
     const sequenceCorrectAnswers = useStore($sequenceCorrectAnswers);
     const sequenceSelectedWords = useStore($sequenceSelectedWords);
+    const sequenceSelectedIndexes = sequenceSelectedWords.map(({ index }) => index);
+    const sequenceSelectedValues = sequenceSelectedWords.map(({ value }) => value);
     const sequenceOnSuccessHandler = useStore($sequenceOnSuccessHandler);
     const [isLoaded, setIsLoaded] = useState(false);
     const [onCorrect, onWrong] = useAnswer();
 
     const onCheck: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-        const answer = sequenceSelectedWords.join(answerJoinSymbol);
+        const answer = sequenceSelectedValues.join(answerJoinSymbol);
         const isCorrect = sequenceCorrectAnswers.includes(answer);
 
         if (isCorrect) {
@@ -50,11 +52,13 @@ export const SequenceToolbar = () => {
             id={toolbarId}
         >
             <div className={style.toolbarContainer}>
-                {sequenceToolbarWords.map((word) => {
+                {sequenceToolbarWords.map((word, index) => {
+                    const isSelected = sequenceSelectedIndexes.includes(index);
                     return (
                         <button
                             className={clsx(style.selectable)}
-                            onClick={() => sequenceSelectedWordsApi.push(word)}
+                            disabled={isSelected}
+                            onClick={() => sequenceSelectedWordsApi.push({ value: word, index })}
                             key={word}
                         >
                             {word}

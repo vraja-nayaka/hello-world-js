@@ -1,8 +1,13 @@
 import { createApi, createStore } from 'effector';
 
-export const $sequenceSelectedWords = createStore<string[]>([]);
+type SelectedWords = {
+    value: string;
+    index: number;
+}
+
+export const $sequenceSelectedWords = createStore<SelectedWords[]>([]);
 export const sequenceSelectedWordsApi = createApi($sequenceSelectedWords, {
-    push: (state, newWord: string) => [...state, newWord],
+    push: (state, newWord: SelectedWords) => [...state, newWord],
     remove: (state, index: number) => {
         const newState = [...state];
         newState.splice(index, 1);
@@ -10,6 +15,16 @@ export const sequenceSelectedWordsApi = createApi($sequenceSelectedWords, {
     },
     clear: () => [],
 });
+
+// export const $sequenceSelectedIndexes = createStore<number[]>([]);
+// export const sequenceSelectedIndexesApi = createApi($sequenceSelectedIndexes, {
+//     push: (state, newIndex: number) => [...state, newIndex],
+//     remove: (state, removedIndex: number) => {
+//         const newState = state.filter((_value, index) => index !== removedIndex);
+//         return newState;
+//     },
+//     clear: () => [],
+// });
 
 export const $sequenceToolbarWords = createStore<string[]>([]);
 export const sequenceToolbarWordsApi = createApi($sequenceToolbarWords, {

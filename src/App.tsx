@@ -12,7 +12,7 @@ function App() {
             <div id='appConfetti' className='appConfetti'></div>
             <div className='App'>
                 {currentLesson === null && <MapPage />}
-                {currentLesson !== null && <PracticePage />}
+                {currentLesson !== null && <PracticePage currentLesson={currentLesson} />}
             </div>
         </>
     );
