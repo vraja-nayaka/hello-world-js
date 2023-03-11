@@ -1,16 +1,18 @@
 import clsx from 'clsx';
 import { useStore } from 'effector-react';
 import { useEffect, useRef, useState } from 'react';
+
 import islandImage from '../../../assets/images/island.jpeg';
-import { $successLessons, currentLessonApi } from '../../lib/store';
+import { $successLessons } from '../../lib/store';
 
 import style from './map.module.css';
+import { Mark, Sizes } from './Mark';
 
 // x and y are percents
 const marks = [
-    { x: 60, y: 75, lessonId: 0 },
-    { x: 52, y: 74, lessonId: 1 },
-    { x: 51, y: 69, lessonId: 2 },
+    { x: 60, y: 75, lessonId: 0, title: 'Строки и числа (strings and numbers)' },
+    { x: 52, y: 74, lessonId: 1, title: 'Переменные (variables)' },
+    { x: 51, y: 69, lessonId: 2, title: 'ФУНКЦИИ (functions)' },
     { x: 50, y: 62, lessonId: 3 },
     { x: 54, y: 58, lessonId: 4 },
     { x: 50, y: 54, lessonId: 5 },
@@ -26,10 +28,6 @@ const marks = [
     // Лес
     { x: 82, y: 47, lessonId: 13 },
 ];
-type Sizes = {
-    x: number;
-    y: number;
-};
 
 export const Map = () => {
     const image = useRef<HTMLImageElement | null>(null);
@@ -62,28 +60,7 @@ export const Map = () => {
             return null;
         }
 
-        return marks.map((mark) => {
-            const isHideMark = mark.lessonId > Math.max(...successLessons, 0) + 1;
-
-            const onMarkClick = () => {
-                currentLessonApi.set(mark.lessonId);
-                window.scrollTo({ behavior: 'auto', top: 0 });
-            };
-
-            return (
-                <div
-                    key={mark.lessonId}
-                    className={clsx(style.markWrapper, {
-                        [style.markWrapperSuccess]: successLessons.includes(mark.lessonId),
-                        [style.markWrapperHidden]: isHideMark,
-                    })}
-                    onClick={isHideMark ? undefined : onMarkClick}
-                    style={{ top: (sizes.y * mark.y) / 100, left: (sizes.x * mark.x) / 100 }}
-                >
-                    <div className={style.mark}>{mark.lessonId}</div>
-                </div>
-            );
-        });
+        return marks.map((mark) => <Mark key={mark.lessonId} sizes={sizes} {...mark} />);
     };
 
     return (
