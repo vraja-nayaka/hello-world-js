@@ -1,5 +1,5 @@
 .editorWrapper {
-  padding: 0 0 70vh;
+  padding: 32px 0 70vh;
 }
 
 .codeBlock {
@@ -19,7 +19,7 @@
     max-height: 0;
   }
   100% {
-    opacity: 100%;
+    opacity: 1;
     max-height: 500px;
   }
 }

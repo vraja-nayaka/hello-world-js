@@ -7,6 +7,12 @@ export const currentCodeBlockApi = createApi($currentCodeBlock, {
     reset: () => 0,
 });
 
+export const $errors = createStore(0);
+export const errorsApi = createApi($errors, {
+    next: (value) => value + 1,
+    reset: () => 0,
+});
+
 export const $currentLesson = createStore<number | null>(null);
 export const currentLessonApi = createApi($currentLesson, {
     set: (_state, value: number) => value,

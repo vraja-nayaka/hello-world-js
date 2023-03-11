@@ -1,0 +1,36 @@
+.toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: darkgray;
+    height: 40px;
+    padding: 0 40px;
+    animation: animateToolbar 0.5s ease forwards;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wrapper {
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.errors {
+    color: red;
+    font-weight: bold;
+}
+
+@keyframes animateToolbar {
+    0% {
+        opacity: 0;
+        height: 0px;
+    }
+    100% {
+        opacity: 1;
+        height: 40px;
+    }
+}

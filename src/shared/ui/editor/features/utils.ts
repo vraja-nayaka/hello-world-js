@@ -1,6 +1,6 @@
 import { Editor, NodeEntry, Transforms } from 'slate';
 import useSound from 'use-sound';
-import { currentCodeBlockApi } from '../../../lib/store';
+import { currentCodeBlockApi, errorsApi } from '../../../lib/store';
 import correctSfx from '../../../sound/correct.mp3';
 import wrongSfx from '../../../sound/wrong.mp3';
 import { pushConfetti } from '../../confetti/Confetti';
@@ -58,6 +58,7 @@ export const useAnswer = () => {
     const onWrong = (element: HTMLElement) => {
         const origin = getElementCenter(element);
         playWrong();
+        errorsApi.next();
         pushConfetti({ origin, type: 'fail' });
     };
 

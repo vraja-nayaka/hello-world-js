@@ -29,7 +29,6 @@ export const NextButton = () => {
                         if (currentLesson !== null) {
                             successLessonsApi.add(currentLesson);
                         }
-                        currentCodeBlockApi.reset();
                         setTimeout(() => currentLessonApi.reset(), 300);
                     }}
                 >
