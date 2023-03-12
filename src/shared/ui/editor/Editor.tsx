@@ -1,6 +1,6 @@
 import Prism from 'prismjs';
 import { useEffect, useState } from 'react';
-import { createEditor, Element, Transforms } from 'slate';
+import { createEditor, Transforms } from 'slate';
 import { withReact, Slate, Editable } from 'slate-react';
 import { withHistory } from 'slate-history';
 import { prismThemeCss } from './prism/prismTheme';
@@ -28,14 +28,20 @@ export const CodeHighlighting = ({ lesson }: Props) => {
     const [editor] = useState(() => withHistory(withReact(createEditor())));
     const initialValue = lesson.map((value) => getJsxCodeBlock(value));
 
+    const onClearEditor = () => {
+        const point = { path: [0, 0], offset: 0 };
+        editor.selection = { anchor: point, focus: point };
+        editor.history = { redos: [], undos: [] };
+        editor.children = [{ type: 'paragraph', children: [{ text: '' }] }];
+    };
+
     const decorate = useDecorate(editor);
     const onKeyDown = useOnKeydown(editor);
     const currentCodeBlock = useStore($currentCodeBlock);
     const isShowNextButton = currentCodeBlock >= initialValue.length - 1;
 
-    const [value] = initialValue;
     useEffect(() => {
-        if (currentCodeBlock !== 0 && currentCodeBlock < initialValue.length) {
+        if (currentCodeBlock < initialValue.length) {
             Transforms.insertNodes(editor, initialValue[currentCodeBlock], {
                 at: [editor.children.length],
             });
@@ -44,7 +50,7 @@ export const CodeHighlighting = ({ lesson }: Props) => {
 
     return (
         <div className={style.editorWrapper}>
-            <Slate editor={editor} value={[value]}>
+            <Slate editor={editor} value={[]}>
                 <SetNodeToDecorations />
                 <Editable
                     decorate={decorate}
@@ -56,7 +62,7 @@ export const CodeHighlighting = ({ lesson }: Props) => {
                 />
                 <style>{prismThemeCss}</style>
             </Slate>
-            {isShowNextButton && <NextButton />}
+            {isShowNextButton && <NextButton onClearEditor={onClearEditor} />}
         </div>
     );
 };

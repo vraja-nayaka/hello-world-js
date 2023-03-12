@@ -2,7 +2,12 @@ import clsx from 'clsx';
 import { useStore } from 'effector-react';
 import Tooltip from '@tippyjs/react';
 
-import { $successLessons, currentLessonApi } from '../../lib/store';
+import {
+    $successLessons,
+    currentLessonApi,
+    currentModeApi,
+    currentCodeBlockApi,
+} from '../../lib/store';
 
 import style from './map.module.css';
 
@@ -26,6 +31,8 @@ export const Mark = (props: MarkProps) => {
 
     const onMarkClick = () => {
         currentLessonApi.set(lessonId);
+        currentModeApi.set('quiz');
+        currentCodeBlockApi.set(0);
         window.scrollTo({ behavior: 'auto', top: 0 });
     };
 

@@ -1,6 +1,14 @@
+import { useStore } from 'effector-react';
 import { Editor, NodeEntry, Transforms } from 'slate';
 import useSound from 'use-sound';
-import { currentCodeBlockApi, errorsApi } from '../../../lib/store';
+import {
+    $currentCodeBlock,
+    $currentMode,
+    $errors,
+    currentCodeBlockApi,
+    currentModeApi,
+    errorsApi,
+} from '../../../lib/store';
 import correctSfx from '../../../sound/correct.mp3';
 import wrongSfx from '../../../sound/wrong.mp3';
 import { pushConfetti } from '../../confetti/Confetti';
@@ -46,19 +54,38 @@ export const replaceFeatureToText = (
 export const useAnswer = () => {
     const [playCorrect] = useSound(correctSfx);
     const [playWrong] = useSound(wrongSfx);
+    const currentMode = useStore($currentMode);
+    const currentCodeBlock = useStore($currentCodeBlock);
+    const errors = useStore($errors);
 
     const onCorrect = (element: HTMLElement) => {
         const origin = getElementCenter(element);
         playCorrect();
         pushConfetti({ origin, type: 'success' });
-        currentCodeBlockApi.next();
+
+        if (currentMode === 'quiz') {
+            currentCodeBlockApi.next();
+        }
+        if (currentMode === 'errorCorrection') {
+            const nextErrors = errors.filter((value) => value !== currentCodeBlock);
+            errorsApi.set(nextErrors);
+            const nextError = nextErrors[0];
+            if (nextError) {
+                currentCodeBlockApi.set(nextError);
+            } else {
+                // TODO: set last element
+                currentCodeBlockApi.set(9999);
+            }
+        }
+
         window.scrollTo({ top: window.scrollY + 200, behavior: 'smooth' });
     };
 
     const onWrong = (element: HTMLElement) => {
+        // TODO: при currentMode === 'errorCorrection' что-то делать
         const origin = getElementCenter(element);
         playWrong();
-        errorsApi.next();
+        errorsApi.add();
         pushConfetti({ origin, type: 'fail' });
     };
 

@@ -1,0 +1,19 @@
+.wrapper {
+    margin: 12px;
+    width: 100%;
+    border: 2px solid rgb(182, 120, 240);
+    border-radius: 16px;
+    background-color: rgb(140, 219, 237);
+    padding: 32px;
+    animation: animateToolbar 0.5s ease forwards;
+    box-sizing: border-box;
+}
+
+.text {
+    color: rgb(118, 78, 155);
+}
+
+.errors {
+    margin-top: 12px;
+    color: rgb(164, 58, 81);
+}
