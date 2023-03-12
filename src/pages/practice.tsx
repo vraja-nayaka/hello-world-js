@@ -21,9 +21,9 @@ export const PracticePage = (props: Props) => {
 
     return (
         <>
-            <TopToolbar />
             <CodeHighlighting lesson={lessons[currentLesson]} />
             <SequenceToolbar />
+            <TopToolbar />
         </>
     );
 };
