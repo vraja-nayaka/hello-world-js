@@ -16,16 +16,6 @@ export const sequenceSelectedWordsApi = createApi($sequenceSelectedWords, {
     clear: () => [],
 });
 
-// export const $sequenceSelectedIndexes = createStore<number[]>([]);
-// export const sequenceSelectedIndexesApi = createApi($sequenceSelectedIndexes, {
-//     push: (state, newIndex: number) => [...state, newIndex],
-//     remove: (state, removedIndex: number) => {
-//         const newState = state.filter((_value, index) => index !== removedIndex);
-//         return newState;
-//     },
-//     clear: () => [],
-// });
-
 export const $sequenceToolbarWords = createStore<string[]>([]);
 export const sequenceToolbarWordsApi = createApi($sequenceToolbarWords, {
     show: (_state, words: string[]) => words,
