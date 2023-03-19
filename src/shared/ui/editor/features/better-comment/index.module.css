@@ -3,7 +3,20 @@
 }
 
 .commentDanger {
-    color: #f82c04;
+    position: relative;
+
+    color: #f8e404;
+    background-color: rgb(56, 75, 107);
+}
+.commentDanger::before {
+    content: '';
+    left: -8px;
+    top: 0;
+    position: absolute;
+    /* background-color: rgba(54, 178, 231, 0.78); */
+    background-color: rgba(231, 184, 54, 0.78);
+    width: 4px;
+    height: 100%;
 }
 
 .commentTodo {

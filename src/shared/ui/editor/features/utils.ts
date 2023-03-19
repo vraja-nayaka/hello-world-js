@@ -6,7 +6,6 @@ import {
     $currentMode,
     $errors,
     currentCodeBlockApi,
-    currentModeApi,
     errorsApi,
 } from '../../../lib/store';
 import correctSfx from '../../../sound/correct.mp3';
@@ -33,6 +32,25 @@ export const shuffle = (array: string[]) => {
     return newArray;
 };
 
+export const shufflePairs = (correctPairs: string[][]) => {
+    const columns = correctPairs.reduce(
+        (acc, pair) => {
+            acc[0].push(pair[0]);
+            acc[1].push(pair[1]);
+            return acc;
+        },
+        [[], []] as string[][]
+    );
+
+    const shuffledColumns = columns.map((column) => shuffle(column));
+
+    const shuffledPairs = shuffledColumns[0].map((_, index) => {
+        return [shuffledColumns[0][index], shuffledColumns[1][index]];
+    });
+
+    return shuffledPairs;
+};
+
 export const replaceFeatureToText = (
     editor: CustomEditor,
     path: number[],
@@ -51,6 +69,8 @@ export const replaceFeatureToText = (
     Transforms.insertText(editor, correctAnswer, { at: anchor });
 };
 
+type UseAnswerHandlerOptions = { incomplete?: boolean };
+
 export const useAnswer = () => {
     const [playCorrect] = useSound(correctSfx);
     const [playWrong] = useSound(wrongSfx);
@@ -58,10 +78,15 @@ export const useAnswer = () => {
     const currentCodeBlock = useStore($currentCodeBlock);
     const errors = useStore($errors);
 
-    const onCorrect = (element: HTMLElement) => {
+    const onCorrect = (element: HTMLElement, options?: UseAnswerHandlerOptions) => {
+        const { incomplete } = options || {};
         const origin = getElementCenter(element);
         playCorrect();
         pushConfetti({ origin, type: 'success' });
+
+        if (incomplete) {
+            return;
+        }
 
         if (currentMode === 'quiz') {
             currentCodeBlockApi.next();

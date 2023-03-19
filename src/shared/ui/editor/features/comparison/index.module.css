@@ -1,0 +1,29 @@
+.wrapper {
+    padding: 16px 16px 0;
+    background-color: #334155;
+    border-radius: 8px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+}
+
+.item {
+    min-width: calc(50% - 16px);
+    padding: 16px 4px;
+    transition: all .4s ease;
+}
+
+.itemSelected, .itemSelected:focus {
+    outline: 8px auto #38bdf8;
+    color: #38bdf8;
+}
+
+.itemComplete {
+    background-color: rgb(225, 245, 220);
+    color: #334155;
+    pointer-events: none;
+}

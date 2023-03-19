@@ -4,6 +4,7 @@ const features = [
     { name: 'customButton', pattern: /§§.+§§/ },
     { name: 'customInput', pattern: /§_.+§_/ },
     { name: 'sequence', pattern: /§>.+§>/ },
+    { name: 'comparison', pattern: /§~.+§~/ },
     { name: 'comment', pattern: /\/\/[^§\n]*|\/\*[\s\S>]*?(?:\*\/|$)/ },
 ];
 

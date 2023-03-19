@@ -9,7 +9,7 @@
   margin-top: 0;
   background: rgba(0, 20, 60, 0.03);
   padding: 5px 13px;
-  animation: animate 1.4s ease forwards;
+  animation: animate 4s ease forwards;
   overflow: hidden;
 }
 
@@ -18,8 +18,12 @@
     opacity: 0;
     max-height: 0;
   }
+  40% { 
+    opacity: 1;
+    max-height: 800;
+  }
   100% {
     opacity: 1;
-    max-height: 500px;
+    max-height: 2000px;
   }
 }
