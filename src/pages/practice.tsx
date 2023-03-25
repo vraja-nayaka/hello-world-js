@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { currentCodeBlockApi, currentModeApi, errorsApi } from '../shared/lib/store';
 import { CodeHighlighting } from '../shared/ui/editor/Editor';
 import { SequenceToolbar } from '../shared/ui/editor/features/sequence/SequenceToolbar';
 import { TopToolbar } from '../shared/ui/top-toolbar/TopToolbar';

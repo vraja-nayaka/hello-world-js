@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { useStore } from 'effector-react';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { ReactEditor, RenderLeafProps, useSlateStatic } from 'slate-react';
 import { useOnClickOutside } from '../../../../lib/hooks/useOutsideClick';
 
@@ -26,9 +26,6 @@ export const Sequence = (props: RenderLeafProps) => {
     const editor = useSlateStatic();
 
     const clickableText: string = children.props.leaf.text.slice(2, -2);
-    const variants = clickableText
-        .split(splitSymbol)
-        .map((value) => value.replace(wrongSymbol, ''));
 
     const ref = useRef(null);
 
@@ -36,6 +33,14 @@ export const Sequence = (props: RenderLeafProps) => {
         sequenceToolbarWordsApi.hide();
         sequenceCorrectAnswersApi.remove();
     };
+
+    const shuffledVariants = useMemo(() => {
+        const variants = clickableText
+            .split(splitSymbol)
+            .map((value) => value.replace(wrongSymbol, ''));
+
+        return shuffle(variants);
+    }, [clickableText]);
 
     const onFocus = () => {
         const correctAnswer = clickableText
@@ -50,7 +55,7 @@ export const Sequence = (props: RenderLeafProps) => {
         };
         sequenceOnSuccessHandlerApi.set(onSuccess);
         if (!sequenceToolbarWords.length) {
-            sequenceToolbarWordsApi.show(shuffle(variants));
+            sequenceToolbarWordsApi.show(shuffledVariants);
         }
         sequenceCorrectAnswersApi.set([correctAnswer]);
     };

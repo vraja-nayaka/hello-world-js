@@ -38,7 +38,7 @@
 
 .selectable {
     border-radius: 8px;
-    margin-right: 8px;
+    margin: 4px;
     margin-bottom: 8px;
     /* border: 0px solid transparent; */
     padding: 2px 8px 4px;
@@ -91,7 +91,7 @@
 .focusable {
     min-height: 32px;
     border-radius: 8px;
-    margin-right: 8px;
+    margin: 4px;
     border: 1px solid transparent;
     padding: 2px 8px;
     background-color: #000;

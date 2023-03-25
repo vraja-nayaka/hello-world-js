@@ -29,6 +29,10 @@ const marks = [
     { x: 82, y: 47, lessonId: 13 },
 ];
 
+const marksHard = [
+    { x: 24, y: 79, lessonId: -1, title: 'Сложные упражнения' },
+];
+
 export const Map = () => {
     const image = useRef<HTMLImageElement | null>(null);
     const [sizes, setSizes] = useState<Sizes>();
@@ -60,7 +64,11 @@ export const Map = () => {
             return null;
         }
 
-        return marks.map((mark) => <Mark key={mark.lessonId} sizes={sizes} {...mark} />);
+
+        const marksElements =  marks.map((mark) => <Mark key={mark.lessonId} sizes={sizes} {...mark} />);
+        const marksHardElements =  marksHard.map((mark) => <Mark key={mark.lessonId} sizes={sizes} {...mark} />);
+
+        return [...marksElements, marksHardElements];
     };
 
     return (
