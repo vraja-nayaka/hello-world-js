@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react';
-import { Editor, NodeEntry, Transforms } from 'slate';
+import { Editor, Element, NodeEntry, Transforms } from 'slate';
 import useSound from 'use-sound';
 import {
     $currentCodeBlock,
@@ -12,6 +12,7 @@ import correctSfx from '../../../sound/correct.mp3';
 import wrongSfx from '../../../sound/wrong.mp3';
 import { pushConfetti } from '../../confetti/Confetti';
 import { CustomEditor, CustomText } from '../custom-types';
+import { CodeBlockType, CodeLineType } from '../consts';
 
 export const getElementCenter = (element: HTMLElement) => {
     const { x, y, width } = element.getBoundingClientRect();
@@ -115,4 +116,17 @@ export const useAnswer = () => {
     };
 
     return [onCorrect, onWrong];
+};
+
+const toChildren = (content: string) => [{ text: content }];
+
+const toCodeLines = (content: string): Element[] =>
+    content.split('\n').map((line) => ({ type: CodeLineType, children: toChildren(line) }));
+
+export const getJsxCodeBlock = (codeString: string) => {
+    return {
+        type: CodeBlockType,
+        language: 'jsx',
+        children: toCodeLines(codeString),
+    };
 };

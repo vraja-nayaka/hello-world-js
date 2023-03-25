@@ -1,4 +1,4 @@
-export const lesson1: string[] = [
+export default [
     `
 'Теперь разберем массивы (array):'
 // Массив - это упорядоченная коллекция

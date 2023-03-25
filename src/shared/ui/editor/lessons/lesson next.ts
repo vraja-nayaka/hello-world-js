@@ -1,4 +1,4 @@
-export const lesson_next: string[] = [
+export default [
     `
     // Теперь давай разберем еще один оператор - typeof
 typeof "любая строка"

@@ -1,4 +1,4 @@
-export const lesson3: string[] = [
+export default [
     `'ПАРАМЕТРЫ ФУНКЦИЙ (params)'
 
 // В функцию можно передавать параметры

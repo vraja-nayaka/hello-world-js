@@ -11,10 +11,10 @@ import { Mark, Sizes } from './Mark';
 // x and y are percents
 const marks = [
     { x: 60, y: 75, lessonId: 0, title: 'Строки и числа (strings and numbers)' },
-    { x: 52, y: 74, lessonId: 1, title: 'Переменные (variables)' },
-    { x: 51, y: 69, lessonId: 2, title: 'ФУНКЦИИ (functions)' },
-    { x: 50, y: 62, lessonId: 3 },
-    { x: 54, y: 58, lessonId: 4 },
+    { x: 52, y: 74, lessonId: 1, title: 'Сложение и конкатинация' },
+    { x: 51, y: 69, lessonId: 2, title: 'Пробелы и приоритетность' },
+    { x: 50, y: 62, lessonId: 3, title: 'Переменные (variables)'  },
+    { x: 54, y: 58, lessonId: 4, title: 'ФУНКЦИИ (functions)'  },
     { x: 50, y: 54, lessonId: 5 },
     { x: 55, y: 50, lessonId: 6 },
     { x: 58, y: 45, lessonId: 7 },

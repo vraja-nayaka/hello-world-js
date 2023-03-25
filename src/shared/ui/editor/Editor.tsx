@@ -13,9 +13,9 @@ import { renderElement } from './renderElement';
 import { useStore } from 'effector-react';
 import { $currentCodeBlock } from '../../lib/store';
 import { NextButton } from '../next-button/NextButton';
+import { getJsxCodeBlock } from './features/utils';
 
 import style from './editor.module.css';
-import { getJsxCodeBlock } from './lessons/utils';
 
 // its just for init
 Prism;
