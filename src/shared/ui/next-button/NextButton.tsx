@@ -8,11 +8,8 @@ import {
     successLessonsApi,
 } from '../../lib/store';
 import { pushConfetti } from '../confetti/Confetti';
-import { lessons } from '../editor/lessons';
-import style from './index.module.css';
 
-// TODO: get it from array of lessons
-const lastAvailableLesson = lessons.length - 1;
+import style from './index.module.css';
 
 type Props = {
     onClearEditor: () => void;
@@ -49,7 +46,7 @@ export const NextButton = ({ onClearEditor }: Props) => {
             <div className={style.text}>Спасибо за урок, теперь можем идти дальше!</div>
 
             <button onClick={onNext}>
-                {currentLesson === lastAvailableLesson ? 'Дальше пока ничего нет' : 'Поехали!'}
+                Вернуться на карту
             </button>
             {Boolean(errors.length) && (
                 <>
